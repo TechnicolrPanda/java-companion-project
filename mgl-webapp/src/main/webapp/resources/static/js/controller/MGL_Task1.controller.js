@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('MGL_Task1_app').controller('MGL_Task1_Controller',
+angular.module('MGL_Task1_app').controller('MGLTask1Controller',
 		[ 'MGL_Task1_Service', function(MGL_Task1_Service) {
 			var self = this;
 			self.game = {
