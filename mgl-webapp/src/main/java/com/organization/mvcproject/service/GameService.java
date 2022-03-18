@@ -10,7 +10,7 @@ public interface GameService {
 
 	Game saveGame(Game game);
 	
-	boolean deleteGame(long gameId);
+	void deleteGame(long gameId);
 	
 	Game updateGame(Game game);
 }

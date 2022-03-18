@@ -26,8 +26,8 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public Boolean deleteGame(long gameId) {
-		return gameDAOMock.deleteGameById(gameId);
+	public void deleteGame(long gameId) {
+		gameDAOMock.deleteGameById(gameId);
 	}
 
 	@Override

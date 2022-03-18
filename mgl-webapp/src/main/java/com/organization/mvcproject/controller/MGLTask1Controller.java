@@ -16,12 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.organization.mvcproject.model.Game;
 import com.organization.mvcproject.model.Review;
 import com.organization.mvcproject.service.GameService;
+import com.organization.mvcproject.service.GameServiceImpl;
 
 @Controller
 public class MGLTask1Controller {
 
 	@Autowired
-	private GameService gameService;
+	private GameServiceImpl gameService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
@@ -48,20 +49,29 @@ public class MGLTask1Controller {
 	public ModelAndView game() {
 		
 		return new ModelAndView("gamesPage", "command", new Game());
-	}
-
-	/**
-	 * TODO 2.0 (Separation of concerns) consider moving all controller endpoints that return a ResponseEntity into a @RestController.
-	 */
+	}	
 	
 	@RequestMapping(value = "/game/allGames", method = RequestMethod.GET)
 	public ResponseEntity<List<Game>> fetchAllGames() {
 		return new ResponseEntity<List<Game>>(gameService.retrieveAllGames(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/newGame", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/game/newGame", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> createGame(@RequestBody Game game) {
+		if(game.getId() != null) {
+			gameService.updateGame(game);
+			return new ResponseEntity<Void>(HttpStatus.CREATED);
+		}
 		gameService.saveGame(game);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
+	
+	@RequestMapping(value = "/game/deleteGame", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> deleteGame(@RequestBody Game game){
+		gameService.deleteGame(game.getId());
+		return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
+	}
+	
+	
+	
 }
