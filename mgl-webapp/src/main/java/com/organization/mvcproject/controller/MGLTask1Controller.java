@@ -58,6 +58,10 @@ public class MGLTask1Controller {
 
 	@RequestMapping(value = "/game/newGame", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> createGame(@RequestBody Game game) {
+		if(game.getId() != null) {
+			gameService.updateGame(game);
+			return new ResponseEntity<Void>(HttpStatus.CREATED);
+		}
 		gameService.saveGame(game);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
@@ -67,5 +71,7 @@ public class MGLTask1Controller {
 		gameService.deleteGame(game.getId());
 		return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
 	}
+	
+	
 	
 }

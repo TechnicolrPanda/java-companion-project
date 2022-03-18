@@ -27,6 +27,10 @@ angular.module('MGL_Task1_app').controller('MGLTask1Controller',
 				self.fetchAllGames();
 				});
 			}
+			
+			self.updateGame = function (gameSelected){
+				self.game = angular.copy(gameSelected);			
+			}
 
 			self.fetchAllGames();
 		} ]);

@@ -61,7 +61,9 @@
 
                         <div class="row">
                             <div class="form-actions floatRight">
-                                <input type="submit" value="Add" class="btn btn-primary btn-sm">
+                                <input data-ng-if="!MGL_T1_ctrl.game || !MGL_T1_ctrl.game.id" type="submit" value="Add" class="btn btn-primary btn-sm">
+                                <button data-ng-if="MGL_T1_ctrl.game.id" type="submit">Update</button>
+                                <button data-ng-if="MGL_T1_ctrl.game" type="reset">Clear</button>
                             </div>
                         </div>
                     </form>
@@ -74,7 +76,7 @@
                     <table class="table table-dark table-striped text-light">
                         <thead>
                             <tr>
-                                <th>Game Name</th>
+                                <th id="change">Game Name</th>
                                 <th>Game Genre</th>
                                 <th width="20%"></th>
                             </tr>
@@ -83,8 +85,8 @@
                             <tr data-ng-repeat="currentGame in MGL_T1_ctrl.games">
                                 <td><span data-ng-bind="currentGame.name"></span></td>
                                 <td><span data-ng-bind="currentGame.genre"></span></td>
-                                <td><form data-ng-submit="MGL_T1_ctrl.deleteGame(currentGame)"><button value="Submit">Delete</button></form>
-                                </td>
+                                <td><form data-ng-submit="MGL_T1_ctrl.deleteGame(currentGame)"><button value="Submit">Delete</button></form></td>
+                                <td><form><button data-ng-click="MGL_T1_ctrl.updateGame(currentGame)">Update</button></form></td>
                             </tr>
                         </tbody>
                     </table>
@@ -93,6 +95,8 @@
         </div>
 
     </body>
-    <script type="text/javascript"></script>
+    <script type="text/javascript">
+    	
+    </script>
 
     </html>
