@@ -62,8 +62,8 @@
                         <div class="row">
                             <div class="form-actions floatRight">
                                 <input data-ng-if="!MGL_T1_ctrl.game || !MGL_T1_ctrl.game.id" type="submit" value="Add" class="btn btn-primary btn-sm">
-                                <button data-ng-if="MGL_T1_ctrl.game.id" type="submit">Update</button>
-                                <button data-ng-if="MGL_T1_ctrl.game" type="reset">Clear</button>
+                                <button data-ng-if="MGL_T1_ctrl.game.id" type="submit" class="btn btn-primary btn-sm">Update</button>
+                                <button data-ng-if="MGL_T1_ctrl.game" type="reset" class="btn btn-primary btn-sm">Clear</button>
                             </div>
                         </div>
                     </form>
@@ -85,8 +85,8 @@
                             <tr data-ng-repeat="currentGame in MGL_T1_ctrl.games">
                                 <td><span data-ng-bind="currentGame.name"></span></td>
                                 <td><span data-ng-bind="currentGame.genre"></span></td>
-                                <td><form data-ng-submit="MGL_T1_ctrl.deleteGame(currentGame)"><button value="Submit">Delete</button></form></td>
-                                <td><form><button data-ng-click="MGL_T1_ctrl.updateGame(currentGame)">Update</button></form></td>
+                                <td><button data-ng-click="MGL_T1_ctrl.deleteGame(currentGame)" class="btn btn-primary btn-sm">Delete</button></td>
+                                <td><button data-ng-click="MGL_T1_ctrl.updateGame(currentGame)" class="btn btn-primary btn-sm">Update</button></td>
                             </tr>
                         </tbody>
                     </table>
